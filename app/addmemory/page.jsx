@@ -1,16 +1,25 @@
 "use client"
 
 import { useState } from "react";
-const algo = require('lz-string');
+import Message from "../components/Message";
 
 
 function Imageupload() {
 
     let URL = `http://localhost:5000/api`
 
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState();
+    const [data, setData] = useState({
+        mood: "",
+        desc: "",
+        handle: "",
+        name: ""
+    })
+    const [message, setMessage] = useState({
+        message: "",
+        status: 0,
+    })
 
-    
 
     const convertToBase64 = (e) => {
         let reader = new FileReader();
@@ -22,11 +31,11 @@ function Imageupload() {
         }
         reader.onerror = () => {
             console.log("Error: ", error);
+            setMessage({
+                message:error.message,
+                status:0
+            })
         };
-
-        
-
-
     }
 
     const uploadImage = () => {
@@ -42,31 +51,50 @@ function Imageupload() {
             },
 
             body: JSON.stringify({
-                base64image: image
+                mood: data.mood,
+                desc: data.desc,
+                handle: data.handle,
+                name: data.name,
+                image: image
             })
         };
-
-
         fetch(`${URL}/addmemory`, requestOptions)
             .then((res) => res.json())
-            .then((data) => console.log(data))
-
+            .then((data) => {
+                setMessage({ message: data.message, status: data.status })
+                // console.log(data)
+            })
     }
 
-    return (
-        <div className="auth-wrapper">
-            <div className="auth-inner">
-                Upload an image
-                <input
+    const handleOnChange = (e) => {
+        setData({ ...data, [e.target.name]: e.target.value })
+    }
 
+    console.log(data)
+
+    return (
+        <div className="">
+            <div className="">
+                Upload
+                <Message message={message.message} status={message.status}/>
+                <input type="text" onChange={handleOnChange} name="mood" placeholder="mood" />
+                <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" />
+                <input type="text" onChange={handleOnChange} name="handle" placeholder="handle" />
+                <input type="text" onChange={handleOnChange} name="name" placeholder="name" />
+
+                <input
                     accept="image/*"
                     type="file"
                     onChange={convertToBase64}
                 />
+
             </div>
+
             <div className="grid">
                 <img src={image} width={100} height={100} />
             </div>
+
+
             <button onClick={uploadImage}>Upload</button>
         </div>
     )

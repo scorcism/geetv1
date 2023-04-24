@@ -1,15 +1,24 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from './page.module.css'
-import Memories from './components/Memories'
 
-const inter = Inter({ subsets: ['latin'] })
+import Memories from './components/Memories'
+import { Suspense } from 'react'
+
+
+export const metadata = {
+  title: 'GEET',
+  description: 'Share your Memories',
+  keywords:
+    '',
+};
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      Hello world
-      <Memories/>
+    <main className="">
+      
+      <div className="mx-5">
+        <Suspense fallback={<div>Loading Memoriesssssss...</div>}>
+          <Memories />
+        </Suspense>
+      </div>
     </main>
   )
 }
