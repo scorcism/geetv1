@@ -32,8 +32,8 @@ function Imageupload() {
         reader.onerror = () => {
             console.log("Error: ", error);
             setMessage({
-                message:error.message,
-                status:0
+                message: error.message,
+                status: 0
             })
         };
     }
@@ -86,6 +86,7 @@ function Imageupload() {
                     accept="image/*"
                     type="file"
                     onChange={convertToBase64}
+                    
                 />
 
             </div>
@@ -97,6 +98,8 @@ function Imageupload() {
 
             <button onClick={uploadImage}>Upload</button>
         </div>
+
+
     )
 }
 

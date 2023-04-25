@@ -16,9 +16,7 @@ const Memory = ({ params: { memory } }) => {
         const requestOptions = {
             method: "GET",
         };
-
         // await new Promise((resolve)=>setTimeout(resolve,1000));
-
         await fetch(`${URL}/getmemory/${id}`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
@@ -30,7 +28,6 @@ const Memory = ({ params: { memory } }) => {
     useEffect(() => {
         getMemory()
     }, [])
-
 
     return (
         <>

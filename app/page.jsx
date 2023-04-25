@@ -1,4 +1,5 @@
 
+import Loader from './components/Loader';
 import Memories from './components/Memories'
 import { Suspense } from 'react'
 
@@ -15,7 +16,7 @@ export default function Home() {
     <main className="">
       
       <div className="mx-5">
-        <Suspense fallback={<div>Loading Memoriesssssss...</div>}>
+        <Suspense fallback={<Loader/>}>
           <Memories />
         </Suspense>
       </div>

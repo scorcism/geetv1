@@ -38,7 +38,7 @@ const Memories = () => {
                     // console.log(data)
                     let desc = data.desc
                     return (
-                        <div className="rounded-md p-4 min-h-[300px]  card bg-gray-500 relative" key={data._id}
+                        <div className="rounded-md p-4 card bg-gray-500 relative" key={data._id}
                             style={{ minHeight: "min-content" }}
                         >
                             <div className="card-image flex flex-row justify-center items-center">
@@ -51,7 +51,7 @@ const Memories = () => {
                                     />
                                 </Link>
                             </div>
-                            <div className="" >
+                            <div className=""  >
                                 <div className="meta mt-2 flex flex-col">
                                     <div className="name flex flex-row justify-center items-center">
                                         <p className='capitalize'><span></span>{data.name}</p>
@@ -61,7 +61,7 @@ const Memories = () => {
                                         <p className='text-white capitalize'><span></span>{data.mood}</p>
                                         <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
                                     </div>
-                                    <div className="desc flex flex-row justify-center items-center">
+                                    <div style={{maxHeight:"100px", maxWidth:"100px", overflow:"hidden", whiteSpace:"nowrap"}} className="text-ellipsis desc flex flex-row justify-start items-center">
                                         {desc} ... .
                                     </div>
                                 </div>

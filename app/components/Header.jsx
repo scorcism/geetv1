@@ -13,7 +13,7 @@ const Header = () => {
                     </Link>
 
                     <div className="menu-items">
-                        <Link href="#" className="py-2 px-4 bg-gray-500 border-gray-700 border-2 text-xl ml-3 mr-2 uppercase text-black underline font-bold" >Add memories</Link>
+                        <Link href="/addmemory" className="py-2 px-4 bg-gray-500 border-gray-700 border-2 text-xl ml-3 mr-2 uppercase text-black underline font-bold" >Add memories</Link>
                         {/* <Link href="#" className="text-xl ml-3 mr-2 uppercase text-black underline font-bold" >code</Link> */}
                     </div>
                 </div>
