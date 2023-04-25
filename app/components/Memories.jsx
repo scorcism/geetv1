@@ -4,31 +4,12 @@ import Image from 'next/image'
 import Link from 'next/link';
 import { useEffect, useState } from "react";
 import { resolve } from 'styled-jsx/css';
+import { useGlobalContext } from '../Context/memories';
 
 const Memories = () => {
 
-    let URL = `http://localhost:5000/api`
 
-    const [memories, setMemories] = useState([]);
-
-    const getMemories =async  () => {
-
-        const requestOptions = {
-            method: "GET",
-        };
-
-        // await new Promise((resolve)=>setTimeout(resolve,1000));
-
-        await fetch(`${URL}/getmemories`, requestOptions)
-            .then((res) => res.json())
-            .then((data) => {
-                // console.log(data)
-                setMemories(data);
-            })
-    }
-    useEffect(() => {
-        getMemories()
-    }, [])
+    const { URL, memories } = useGlobalContext();
 
 
     return (
@@ -37,6 +18,7 @@ const Memories = () => {
                 {memories.map((data) => {
                     // console.log(data)
                     let desc = data.desc
+                    // console.log(data.image)
                     return (
                         <div className="rounded-md p-4 card bg-gray-500 relative" key={data._id}
                             style={{ minHeight: "min-content" }}
@@ -44,6 +26,16 @@ const Memories = () => {
                             <div className="card-image flex flex-row justify-center items-center">
 
                                 <Link href={`/memories/${data._id}`} target="_blank">
+
+                                    {/* <div className="" 
+                                        style={{
+                                            backgroundImage:`url(${data.image})`,
+                                            maxHeight:"300px",
+                                            maxWidth:"300px",
+                                        }}
+                                    >
+                                    </div> */}
+
                                     <img className='text-transparent '
                                         style={{ maxWidth: "250px", maxHeight: "250px", objectFit: "scale-down" }}
                                         src={data.image}
@@ -61,8 +53,8 @@ const Memories = () => {
                                         <p className='text-white capitalize'><span></span>{data.mood}</p>
                                         <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
                                     </div>
-                                    <div style={{maxHeight:"100px", maxWidth:"100px", overflow:"hidden", whiteSpace:"nowrap"}} className="text-ellipsis desc flex flex-row justify-start items-center">
-                                        {desc} ... .
+                                    <div className="text-ellipsis desc flex flex-row justify-start items-center">
+                                        {desc} ....
                                     </div>
                                 </div>
                             </div>

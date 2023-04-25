@@ -1,11 +1,12 @@
 import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
-import { Montserrat } from '@next/font/google'
+import { Poppins } from '@next/font/google'
+import { GlobalContextProvider } from './Context/memories'
 
-const montserrat = Montserrat({
-  varient: ['200', '300', '400', '700'],
-  subsets: ['latin']
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['200', '400', '700']
 })
 
 
@@ -17,11 +18,15 @@ export default function RootLayout({ children }) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body>
-        <div className={`bg-gray-800 `}>
-          <Header />
-          {children}
-          <Footer />
+      <body className='bg-gray-800'>
+        <div className={`${poppins.className}`}>
+          <GlobalContextProvider>
+            <div className="">
+              <Header />
+              {children}
+              <Footer />
+            </div>
+          </GlobalContextProvider>
         </div>
       </body>
     </html >

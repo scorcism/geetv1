@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .loader {
-    border: 10px solid #000000;
+    border: 3px solid #000000;
     border-radius: 50%;
-    border-top: 10px solid #ffffff;
-    width: 70px;
-    height: 70px;
+    border-top: 3px solid #ffffff;
+    width: 30px;
+    height: 30px;
     -webkit-animation: spin 2s linear infinite;
     /* Safari */
     animation: spin 2s linear infinite;

@@ -1,11 +1,10 @@
+import Loader from "./components/Loader"
 
 
 const Loading = () => {
     return (
         <>
-            <h2>
-                Loading...
-            </h2>
+            <Loader/>
         </>
     )
 }

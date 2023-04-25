@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 
 const Memory = ({ params: { memory } }) => {
@@ -40,8 +40,10 @@ const Memory = ({ params: { memory } }) => {
                        <h4 className="text-x">Social: <span className="text-red-700 text-xl">{mem.handle}</span></h4>
                        <h4 className="ml-4 capitalize">Mood:<span className="text-red-700 text-xl capitalize"> {mem.mood} </span></h4>
                        </div>
+                        
 
                        <p className="text-xl "><span></span>{mem.desc}</p>
+                        
 
                     </div>
 
