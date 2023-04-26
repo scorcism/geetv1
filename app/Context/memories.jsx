@@ -27,12 +27,27 @@ export const GlobalContextProvider = ({ children }) => {
     }
 
 
+    const [alert, setAlert] = useState(null)
+
+    const setShowAlert = (mes, stat) => {
+        // console.log("inside setShowAlert function")
+        setAlert({
+            message: mes,
+            status: stat
+        })
+        // console.log("inside swtshowalert function")
+        // console.log(message +" mesg " + status)
+    }
+
+
     useEffect(() => {
         getMemories()
     }, [])
 
+    // console.log(alert)
+
     return (
-        <GlobalContext.Provider value={{ URL, memories }}>
+        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert }}>
             {children}
         </GlobalContext.Provider>
     )

@@ -1,12 +1,15 @@
 "use client"
 
 import { useState } from "react";
-import Message from "../components/Message";
+import { useGlobalContext } from "../Context/memories";
 
 
 function Imageupload() {
 
-    let URL = `http://localhost:5000/api`
+
+    const { URL, setShowAlert } = useGlobalContext();
+
+
 
     const [image, setImage] = useState();
     const [data, setData] = useState({
@@ -15,25 +18,33 @@ function Imageupload() {
         handle: "",
         name: ""
     })
-    const [message, setMessage] = useState({
-        message: "",
-        status: 0,
-    })
+    // const [message, setMessage] = useState({
+    //     message: "",
+    //     status: 0,
+    // })
 
 
     const convertToBase64 = (e) => {
         let reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
-            console.log(reader.result);
-            console.log(reader.result.length);
+            // console.log(reader.result);
+            // console.log(reader.result.length);
             setImage(reader.result);
+            setShowAlert({
+                message: "Set Image", 
+                status: 0
+            })
         }
         reader.onerror = () => {
             console.log("Error: ", error);
-            setMessage({
-                message: error.message,
-                status: 0
+            // setMessage({
+            //     message: error.message,
+            //     status: 0
+            // })
+            setShowAlert({
+                message: error.message, 
+                status: error.status
             })
         };
     }
@@ -61,7 +72,11 @@ function Imageupload() {
         fetch(`${URL}/addmemory`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
-                setMessage({ message: data.message, status: data.status })
+                console.log(data)
+                // setMessage({ message: data.message, status: data.status })
+                setShowAlert({
+                    message: data.message, status: data.status
+                })
                 // console.log(data)
             })
     }
@@ -70,13 +85,12 @@ function Imageupload() {
         setData({ ...data, [e.target.name]: e.target.value })
     }
 
-    console.log(data)
+    // console.log(message)
 
     return (
         <div className="">
             <div className="">
                 Upload
-                <Message message={message.message} status={message.status}/>
                 <input type="text" onChange={handleOnChange} name="mood" placeholder="mood" />
                 <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" />
                 <input type="text" onChange={handleOnChange} name="handle" placeholder="handle" />
@@ -86,7 +100,7 @@ function Imageupload() {
                     accept="image/*"
                     type="file"
                     onChange={convertToBase64}
-                    
+
                 />
 
             </div>

@@ -2,7 +2,9 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import './globals.css'
 import { Poppins } from '@next/font/google'
-import { GlobalContextProvider } from './Context/memories'
+import { GlobalContextProvider, useGlobalContext } from './Context/memories'
+import ShowAlert from './components/ShowAlert'
+import Alert from './components/Alert'
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -11,6 +13,9 @@ const poppins = Poppins({
 
 
 export default function RootLayout({ children }) {
+
+
+
   return (
     <html lang="en">
       {/*
@@ -21,11 +26,13 @@ export default function RootLayout({ children }) {
       <body className='bg-gray-800'>
         <div className={`${poppins.className}`}>
           <GlobalContextProvider>
-            <div className="">
+            <>
               <Header />
+              <ShowAlert />
+              {/* <Alert message= {alert.message} status={alert.status}/> */}
               {children}
               <Footer />
-            </div>
+            </>
           </GlobalContextProvider>
         </div>
       </body>

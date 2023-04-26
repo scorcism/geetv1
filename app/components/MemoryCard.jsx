@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FaHeart, FaMeh } from 'react-icons/fa';
+import {  FaMeh, FaEye, FaRegHeart } from 'react-icons/fa';
 import { useGlobalContext } from '../Context/memories';
 
 
@@ -12,12 +12,15 @@ const MemoryCard = ({ data }) => {
 
     const [likes, setLikes] = useState(data.likes);
     const [dislikes, setDisLikes] = useState(data.dislikes);
+    const [liked, setLiked] = useState(false);
+    const [disliked, setDisLiked] = useState(false);
+    const [views, setViews] = useState(data.views);
 
     let { URL } = useGlobalContext();
 
 
-    
-    const submitStatRequest = async (id,endpoint, initial_data) => {
+
+    const submitStatRequest = async (id, endpoint, initial_data) => {
         // console.log("Inside submitStatRequest: "+ id + +" " + endpoint + " " + initial_data)
         const requestOptions = {
             method: "POST",
@@ -30,35 +33,39 @@ const MemoryCard = ({ data }) => {
             },
 
             body: JSON.stringify({
-                old:initial_data
+                old: initial_data
             })
         };
-        fetch(`${URL}/memory/${endpoint}/${id}`, requestOptions)
+        fetch(`${URL}/memory/stats/${endpoint}/${id}`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
                 // setMessage({ message: data.message, status: data.status })
                 // console.log(data)
-                if(data.for == "like"){
+                if (data.for == "like") {
                     setLikes(data.message)
-                }else if(data.for == "dislike"){
+                    setLiked(true);
+                } else if (data.for == "dislike") {
                     setDisLikes(data.message)
+                    setDisLiked(true);
+                } else if (data.for == "view") {
+                    setViews(data.message)
                 }
-        })
+            })
     }
-    
+
     const like = () => {
         // console.log("like click")
-        submitStatRequest(data._id, "like",likes)
+        submitStatRequest(data._id, "like", likes)
     }
-    
+
     const dislike = () => {
-        submitStatRequest(data._id, "dislike",dislikes)
+        submitStatRequest(data._id, "dislike", dislikes)
         // console.log("dis-like click")
     }
 
-    useEffect(()=>{
+    useEffect(() => {
 
-    },[])
+    }, [])
 
 
     return (
@@ -67,12 +74,14 @@ const MemoryCard = ({ data }) => {
         >
             <div className="card-image flex flex-row justify-center items-center">
 
-                <Link href={`/memories/${data._id}`} target="_blank">
+                <Link href={`/memories/${data._id}`} onClick={() => submitStatRequest(data._id, "view", views)} target="_blank">
 
                     <img className='text-transparent '
                         style={{ maxWidth: "250px", maxHeight: "250px", objectFit: "scale-down" }}
                         src={data.image}
                         alt={data.name}
+                        width={"200px"}
+                        height={"200px"}
                     />
                 </Link>
             </div>
@@ -89,15 +98,40 @@ const MemoryCard = ({ data }) => {
                     <div className="text-ellipsis desc flex flex-row justify-start items-center">
                         {desc} ....
                     </div>
-                    <div className="stats flex flex-row justify-end items-center text-xl">
+                    <div className="stats flex flex-row justify-between items-center text-xl w-full">
                         <div className="likes flex flex-row items-center justify-between">
-                            <FaHeart style={{ cursor: "pointer" }} title='like' className='' onClick={like} /><span className='text-sm'>{likes}</span>
-
+                            {
+                                liked ?
+                                    <>
+                                        &#128147;<span className='text-sm'>{likes}</span>
+                                        
+                                    </>
+                                    :
+                                    <>
+                                        <FaRegHeart style={{ cursor: "pointer" }} title='like' className='' onClick={like} /><span className='text-sm'>{likes}</span>
+                                    </>
+                            }
                         </div>
                         <div className="dislikes flex flex-row items-center justify-between">
 
-                            <FaMeh style={{ cursor: "pointer" }} title='dislike' onClick={dislike} /><span className='text-sm'>{dislikes}</span>
+                        {
+                                disliked ?
+                                    <>
+                                        &#128515;<span className='text-sm'>{dislikes}</span>
+                                        
+                                    </>
+                                    :
+                                    <>
+                                        <FaMeh style={{ cursor: "pointer" }} title='dislike' onClick={dislike} /><span className='text-sm'>{dislikes}</span>
+                                    </>
+                            }
+
+                            
                         </div>
+                        <div className="view flex flex-row items-center justify-between">
+                            <FaEye /> <span>{data.views}</span>
+                        </div>
+
 
                     </div>
                 </div>

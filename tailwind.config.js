@@ -11,7 +11,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        fluid: "repeat(auto-fit,minmax(15rem,1fr))"
+        fluid: "repeat(auto-fit,minmax(19rem,1fr))"
       },
       fontFamilty:{
         montserrat : ["var(--font-montserrat)"]
