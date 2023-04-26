@@ -25,8 +25,8 @@ export const GlobalContextProvider = ({ children }) => {
                 setMemories(data);
             })
     }
-    // console.log("henloo")
-    // console.log(memories)
+
+
     useEffect(() => {
         getMemories()
     }, [])
