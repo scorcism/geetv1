@@ -16,7 +16,7 @@ const MemoryCard = ({ data }) => {
     const [disliked, setDisLiked] = useState(false);
     const [views, setViews] = useState(data.views);
 
-    let { URL } = useGlobalContext();
+    let { URL, setShowAlert } = useGlobalContext();
 
 
 
@@ -55,12 +55,20 @@ const MemoryCard = ({ data }) => {
 
     const like = () => {
         // console.log("like click")
-        submitStatRequest(data._id, "like", likes)
+        submitStatRequest(data._id, "like", likes);
+        setShowAlert({
+            message:"I Liked It",
+            status:1
+        })
     }
 
     const dislike = () => {
         submitStatRequest(data._id, "dislike", dislikes)
         // console.log("dis-like click")
+        setShowAlert({
+            message:"I Dis-Liked It",
+            status:0
+        })
     }
 
     useEffect(() => {

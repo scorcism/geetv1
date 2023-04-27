@@ -1,11 +1,15 @@
+"use client"
+
 import Link from "next/link"
 
 
 const Header = () => {
+
+
     return (
         <>
-            <div className="">
-                <div className="border-b-2 border-gray-700 head-body flex items-center h-28 mx-5 justify-between mb-3">
+            <div className="sticky top-0 z-50 border-b-2 border-gray-700 mb-3 bg-gray-800">
+                <div className=" head-body flex items-center h-28 mx-5 justify-between mb-3">
                     <Link href="/">
                     <img height={"140px"} width={"140px"} src="/GEET_1.png" alt="logo" 
                         className="m-2"

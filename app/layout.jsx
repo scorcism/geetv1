@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         head.jsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
       <head />
-      <body className='bg-gray-800'>
+      <body className='bg-gray-800 scroll-smooth'>
         <div className={`${poppins.className}`}>
           <GlobalContextProvider>
             <>

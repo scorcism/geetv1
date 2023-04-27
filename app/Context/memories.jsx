@@ -37,6 +37,11 @@ export const GlobalContextProvider = ({ children }) => {
         })
         // console.log("inside swtshowalert function")
         // console.log(message +" mesg " + status)
+
+        // after 2 seconds dismiss the alert
+        setTimeout(()=>{
+            setAlert(null);
+        },2000)
     }
 
 
