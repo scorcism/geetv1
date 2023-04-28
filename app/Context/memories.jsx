@@ -1,6 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from "react";
+import { filterObject, shuffle } from "lodash";
 
 
 const GlobalContext = createContext();
@@ -10,6 +11,7 @@ export const GlobalContextProvider = ({ children }) => {
     let URL = `http://localhost:5000/api`
 
     const [memories, setMemories] = useState([]);
+    const [mood, setMood] = useState();
 
     const getMemories = async () => {
 
@@ -39,11 +41,14 @@ export const GlobalContextProvider = ({ children }) => {
         // console.log(message +" mesg " + status)
 
         // after 2 seconds dismiss the alert
-        setTimeout(()=>{
+        setTimeout(() => {
             setAlert(null);
-        },2000)
+        }, 2000)
     }
+    
+    let memories_shuffled = shuffle(Object.values(memories));
 
+    memories_shuffled = memories;
 
     useEffect(() => {
         getMemories()
@@ -52,7 +57,7 @@ export const GlobalContextProvider = ({ children }) => {
     // console.log(alert)
 
     return (
-        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert }}>
+        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, memories_shuffled }}>
             {children}
         </GlobalContext.Provider>
     )
