@@ -1,8 +1,8 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../Context/memories";
-
+import { Editor } from '@tinymce/tinymce-react'
 
 function Imageupload() {
 
@@ -12,7 +12,7 @@ function Imageupload() {
 
     const [image, setImage] = useState();
     const [data, setData] = useState({
-        mood: "",
+        mood: "happy",
         desc: "",
         handle: "anonymous",
         name: ""
@@ -105,17 +105,30 @@ function Imageupload() {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
         document.title = "💝 Add Memory | GEET";
-    },[])
+    }, [])
 
-    // console.log(message)
+    // console.log(data)
 
+
+    const editorRef = useRef(null);
+    const log = () => {
+        if (editorRef.current) {
+            console.log(editorRef.current.getContent());
+        }
+    };
+    log()
     return (
         <div className="">
             <div className="">
                 Upload
-                <input type="text" onChange={handleOnChange} name="mood" placeholder="mood" value={data.mood} />
+                {/* <input type="text" onChange={handleOnChange} name="mood" placeholder="mood" value={data.mood} /> */}
+                <select onChange={handleOnChange} name="mood" value={data.mood}>
+                    <option value="happy">happy</option>
+                    <option value="sad">sad</option>
+                    <option value="angry">Angry</option>
+                </select>
                 <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} />
                 <input type="text" onChange={handleOnChange} name="handle" placeholder="handle" value={data.handle} />
                 <input type="text" onChange={handleOnChange} name="name" placeholder="name" value={data.name} />
@@ -133,6 +146,25 @@ function Imageupload() {
                 <img src={image} width={100} height={100} />
             </div>
 
+            <Editor
+                apiKey='pq0pjvingqcx5lgc7oclx3lmyoeos49hyzhsgl5qdlgx98rz'
+                onInit={(evt, editor) => editorRef.current = editor}
+                initialValue="<p>This is the initial content of the editor.</p>"
+                init={{
+                    height: 500,
+                    menubar: false,
+                    plugins: [
+                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                    ],
+                    toolbar: 'undo redo | blocks | ' +
+                        'bold italic forecolor | alignleft aligncenter ' +
+                        'alignright alignjustify | bullist numlist outdent indent | ' +
+                        'removeformat | help',
+                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
+                }}
+            />
 
             <button onClick={() => {
                 if ((data.mood == null || data.mood == "")) {

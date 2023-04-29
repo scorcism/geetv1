@@ -1,7 +1,7 @@
 'use client';
 
 import { createContext, useContext, useState, useEffect } from "react";
-import { filterObject, shuffle } from "lodash";
+
 
 
 const GlobalContext = createContext();
@@ -46,9 +46,9 @@ export const GlobalContextProvider = ({ children }) => {
         }, 2000)
     }
     
-    let memories_shuffled = shuffle(Object.values(memories));
+    // let memories_shuffled = shuffle(Object.values(memories));
 
-    memories_shuffled = memories;
+    // memories_shuffled = memories;
 
     useEffect(() => {
         getMemories()
@@ -57,7 +57,7 @@ export const GlobalContextProvider = ({ children }) => {
     // console.log(alert)
 
     return (
-        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, memories_shuffled }}>
+        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood }}>
             {children}
         </GlobalContext.Provider>
     )

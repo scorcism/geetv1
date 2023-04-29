@@ -9,7 +9,7 @@ import MemoryCard from './MemoryCard';
 
 const Memories = () => {
 
-    const { URL, memories, setMood, mood,memories_shuffled } = useGlobalContext();
+    const { URL, memories, setMood, mood } = useGlobalContext();
 
     // console.log(typeof (memories) + " type of memories")
     console.log(memories)
@@ -35,7 +35,7 @@ const Memories = () => {
                 </div>
             </div>
             <div className="grid gap-10 grid-cols-fluid">
-                {memories_shuffled.map((data) => {
+                {memories.map((data) => {
                     // console.log(data)
                     // console.log(data.image)
                     return (
