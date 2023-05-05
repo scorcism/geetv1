@@ -12,13 +12,20 @@
     "@next/font": "13.3.1",
     "@tinymce/tinymce-react": "^4.3.0",
     "body-parser": "^1.20.2",
+    "canvas": "^2.11.2",
+    "dompurify": "^3.0.2",
+    "fs": "^0.0.1-security",
+    "html-react-parser": "^3.0.16",
+    "jsdom": "^21.1.1",
     "lodash": "^4.17.21",
     "lz-string": "^1.5.0",
+    "net": "^1.0.2",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
-    "tinymce": "^6.4.2"
+    "tinymce": "^6.4.2",
+    "tls": "^0.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

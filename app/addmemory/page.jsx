@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../Context/memories";
-import { Editor } from '@tinymce/tinymce-react'
+import { Editor } from '@tinymce/tinymce-react';
 
 function Imageupload() {
-
-
+    
+    
     const { URL, setShowAlert } = useGlobalContext();
+    const editorRef = useRef(null);
 
 
     const [image, setImage] = useState();
@@ -31,7 +32,7 @@ function Imageupload() {
             // console.log(reader.result.length);
             setImage(reader.result);
             setShowAlert({
-                message: "Memory image is added here in this post so im happy to say that iage is added",
+                message: "Image added",
                 status: 1
             })
         }
@@ -62,7 +63,7 @@ function Imageupload() {
 
             body: JSON.stringify({
                 mood: data.mood,
-                desc: data.desc,
+                desc: editorRef.current.getContent(),
                 handle: data.handle,
                 name: data.name,
                 image: image
@@ -112,13 +113,11 @@ function Imageupload() {
     // console.log(data)
 
 
-    const editorRef = useRef(null);
-    const log = () => {
-        if (editorRef.current) {
-            console.log(editorRef.current.getContent());
-        }
-    };
-    log()
+    // for tiny mc
+    const gettext =() =>{
+        console.log(editorRef.current.getContent())
+    }
+
     return (
         <div className="">
             <div className="">
@@ -137,35 +136,26 @@ function Imageupload() {
                     accept="image/*"
                     type="file"
                     onChange={convertToBase64}
-
                 />
 
+
             </div>
+            <Editor
+            apiKey="pq0pjvingqcx5lgc7oclx3lmyoeos49hyzhsgl5qdlgx98rz"
+                onInit={(evt, editor) => {
+                    editorRef.current = editor
+                }}
+                init={{
+                    menubar: false,
+
+                }
+                }
+            />
+            <button type="submit" onClick={gettext}> get texts</button>
 
             <div className="grid">
                 <img src={image} width={100} height={100} />
             </div>
-
-            <Editor
-                apiKey='pq0pjvingqcx5lgc7oclx3lmyoeos49hyzhsgl5qdlgx98rz'
-                onInit={(evt, editor) => editorRef.current = editor}
-                initialValue="<p>This is the initial content of the editor.</p>"
-                init={{
-                    height: 500,
-                    menubar: false,
-                    plugins: [
-                        'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
-                        'anchor', 'searchreplace', 'visualblocks', 'code', 'fullscreen',
-                        'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
-                    ],
-                    toolbar: 'undo redo | blocks | ' +
-                        'bold italic forecolor | alignleft aligncenter ' +
-                        'alignright alignjustify | bullist numlist outdent indent | ' +
-                        'removeformat | help',
-                    content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
-                }}
-            />
-
             <button onClick={() => {
                 if ((data.mood == null || data.mood == "")) {
                     setShowAlert({
