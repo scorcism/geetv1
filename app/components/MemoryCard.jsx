@@ -84,12 +84,12 @@ const MemoryCard = ({ data }) => {
 
                 <Link href={`/memories/${data._id}`} onClick={() => submitStatRequest(data._id, "view", views)}>
 
-                    <img className='text-transparent '
-                        style={{ maxWidth: "250px", maxHeight: "250px", objectFit: "scale-down" }}
+                    <img className='text-transparent card_img'
+                        style={{  objectFit: "scale-down" }}
                         src={data.image}
                         alt={data.name}
-                        width={"200px"}
-                        height={"200px"}
+                        width="auto"
+                        height="200px"
                     />
                 </Link>
             </div>

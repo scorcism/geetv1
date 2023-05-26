@@ -122,7 +122,7 @@ function Imageupload() {
                     <option value="sad">sad</option>
                     <option value="angry">Angry</option>
                 </select>
-                <textarea type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} rows="4" cols="50"/>
+                <textarea type="text" minLength={"50"} onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} rows="4" cols="50"/>
                 {/* <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} /> */}
                 <input type="text" onChange={handleOnChange} name="handle" placeholder="handle" value={data.handle} />
                 <input type="text" onChange={handleOnChange} name="name" placeholder="name" value={data.name} />
@@ -132,7 +132,7 @@ function Imageupload() {
                     type="file"
                     onChange={convertToBase64}
                 />
-
+    
 
             </div>
             
@@ -153,6 +153,12 @@ function Imageupload() {
                 else if ((data.desc == null || data.desc == "")) {
                     setShowAlert({
                         message: "Set desc of Memory",
+                        status: 0
+                    })
+                }
+                else if (data.desc.length < 50) {
+                    setShowAlert({
+                        message: "desc length should be > 50",
                         status: 0
                     })
                 }

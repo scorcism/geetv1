@@ -48,3 +48,8 @@
            line-clamp: 2; 
    -webkit-box-orient: vertical;
 }
+
+.card_img{
+    max-height: 200px;
+
+}
