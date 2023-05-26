@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import {  FaMeh, FaEye, FaRegHeart } from 'react-icons/fa';
+import { FaMeh, FaEye, FaRegHeart } from 'react-icons/fa';
 import { useGlobalContext } from '../Context/memories';
 
 
@@ -57,8 +57,8 @@ const MemoryCard = ({ data }) => {
         // console.log("like click")
         submitStatRequest(data._id, "like", likes);
         setShowAlert({
-            message:"I Liked It",
-            status:1
+            message: "I Liked It",
+            status: 1
         })
     }
 
@@ -66,8 +66,8 @@ const MemoryCard = ({ data }) => {
         submitStatRequest(data._id, "dislike", dislikes)
         // console.log("dis-like click")
         setShowAlert({
-            message:"I Dis-Liked It",
-            status:0
+            message: "I Dis-Liked It",
+            status: 0
         })
     }
 
@@ -82,7 +82,7 @@ const MemoryCard = ({ data }) => {
         >
             <div className="card-image flex flex-row justify-center items-center">
 
-                <Link href={`/memories/${data._id}`} onClick={() => submitStatRequest(data._id, "view", views)} target="_blank">
+                <Link href={`/memories/${data._id}`} onClick={() => submitStatRequest(data._id, "view", views)}>
 
                     <img className='text-transparent '
                         style={{ maxWidth: "250px", maxHeight: "250px", objectFit: "scale-down" }}
@@ -103,16 +103,19 @@ const MemoryCard = ({ data }) => {
                         <p className='text-white capitalize'><span></span>{data.mood}</p>
                         <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
                     </div>
-                    <div className="text-ellipsis desc flex flex-row justify-start items-center">
+                    <div className="text-ellipsis desc flex flex-row justify-start items-center desc_wrap">
                         {desc} ....
                     </div>
+                    {/* <div className="text-ellipsis desc flex flex-row justify-start items-center">
+                        {desc} ....
+                    </div> */}
                     <div className="stats flex flex-row justify-between items-center text-xl w-full">
                         <div className="likes flex flex-row items-center justify-between">
                             {
                                 liked ?
                                     <>
                                         &#128147;<span className='text-sm'>{likes}</span>
-                                        
+
                                     </>
                                     :
                                     <>
@@ -122,11 +125,11 @@ const MemoryCard = ({ data }) => {
                         </div>
                         <div className="dislikes flex flex-row items-center justify-between">
 
-                        {
+                            {
                                 disliked ?
                                     <>
                                         &#128515;<span className='text-sm'>{dislikes}</span>
-                                        
+
                                     </>
                                     :
                                     <>
@@ -134,7 +137,7 @@ const MemoryCard = ({ data }) => {
                                     </>
                             }
 
-                            
+
                         </div>
                         <div className="view flex flex-row items-center justify-between">
                             <FaEye /> <span>{data.views}</span>

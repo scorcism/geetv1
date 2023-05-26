@@ -33,3 +33,18 @@
         transform: rotate(360deg);
     }
 }
+.left__container{
+    width: 50%;
+}
+
+.right__container{
+    width:50%;
+}
+.desc_wrap{
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2;
+           line-clamp: 2; 
+   -webkit-box-orient: vertical;
+}

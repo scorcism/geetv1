@@ -63,7 +63,7 @@ function Imageupload() {
 
             body: JSON.stringify({
                 mood: data.mood,
-                desc: editorRef.current.getContent(),
+                desc: data.desc,
                 handle: data.handle,
                 name: data.name,
                 image: image
@@ -112,12 +112,6 @@ function Imageupload() {
 
     // console.log(data)
 
-
-    // for tiny mc
-    const gettext =() =>{
-        console.log(editorRef.current.getContent())
-    }
-
     return (
         <div className="">
             <div className="">
@@ -128,7 +122,8 @@ function Imageupload() {
                     <option value="sad">sad</option>
                     <option value="angry">Angry</option>
                 </select>
-                <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} />
+                <textarea type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} rows="4" cols="50"/>
+                {/* <input type="text" onChange={handleOnChange} name="desc" placeholder="desc" value={data.desc} /> */}
                 <input type="text" onChange={handleOnChange} name="handle" placeholder="handle" value={data.handle} />
                 <input type="text" onChange={handleOnChange} name="name" placeholder="name" value={data.name} />
 
@@ -140,22 +135,14 @@ function Imageupload() {
 
 
             </div>
-            <Editor
-            apiKey="pq0pjvingqcx5lgc7oclx3lmyoeos49hyzhsgl5qdlgx98rz"
-                onInit={(evt, editor) => {
-                    editorRef.current = editor
-                }}
-                init={{
-                    menubar: false,
-
-                }
-                }
-            />
-            <button type="submit" onClick={gettext}> get texts</button>
+            
 
             <div className="grid">
                 <img src={image} width={100} height={100} />
             </div>
+            <button onClick={()=>{
+                console.log(data)  ;
+            }}>check data</button>
             <button onClick={() => {
                 if ((data.mood == null || data.mood == "")) {
                     setShowAlert({
