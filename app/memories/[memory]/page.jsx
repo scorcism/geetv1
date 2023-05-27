@@ -32,10 +32,10 @@ const Memory = ({ params: { memory } }) => {
                 // console.log(data[0].mood)
                 setMemory(data[0]);
                 if (mem) {
-                    setLikes(mem.likes);
-                    setDisLikes(mem.dislikes);
-                    setViews(mem.views);
-                    setID(mem._id);
+                    setLikes(data[0].likes);
+                    setDisLikes(data[0].dislikes);
+                    setViews(data[0].views);
+                    setID(data[0]._id);
                 }
             })
     }
@@ -98,7 +98,7 @@ const Memory = ({ params: { memory } }) => {
     }, [])
 
     if (mem) {
-        console.log(mem);
+        console.log(mid);
         console.log(likes + " likes")
         console.log(dislikes + " dislikes")
     }
