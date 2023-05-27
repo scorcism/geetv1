@@ -112,28 +112,18 @@ const MemoryCard = ({ data }) => {
                     <div className="stats flex flex-row justify-between items-center text-xl w-full">
                         <div className="likes flex flex-row items-center justify-between">
                             {
-                                liked ?
+                                
                                     <>
-                                        &#128147;<span className='text-sm'>{likes}</span>
-
-                                    </>
-                                    :
-                                    <>
-                                        <FaRegHeart style={{ cursor: "pointer" }} title='like' className='' onClick={like} /><span className='text-sm'>{likes}</span>
+                                        <FaRegHeart className="cursor-none" title='likes' /><span className='text-sm'>{likes}</span>
                                     </>
                             }
                         </div>
                         <div className="dislikes flex flex-row items-center justify-between">
 
                             {
-                                disliked ?
+                                
                                     <>
-                                        &#128515;<span className='text-sm'>{dislikes}</span>
-
-                                    </>
-                                    :
-                                    <>
-                                        <FaMeh style={{ cursor: "pointer" }} title='dislike' onClick={dislike} /><span className='text-sm'>{dislikes}</span>
+                                        <FaMeh className='cursor-none' title='dislikes'  /><span className='text-sm'>{dislikes}</span>
                                     </>
                             }
 
