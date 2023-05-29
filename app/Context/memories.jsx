@@ -15,20 +15,21 @@ export const GlobalContextProvider = ({ children }) => {
 
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(0);
-
+    const [progress, setProgress] = useState(0)
     const getMemories = async () => {
-
+        setProgress(0);
         const requestOptions = {
             method: "GET",
         };
 
         // await new Promise((resolve)=>setTimeout(resolve,1000));
 
-        await fetch(`${URL}/getmemories?${page}`, requestOptions)
+        await fetch(`${URL}/getmemories?page=${page}`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
                 setMemories(data.memories);
                 setPageCount(data.pagination.pageCount);
+                setProgress(100);
             })
     }
 
@@ -61,7 +62,7 @@ export const GlobalContextProvider = ({ children }) => {
     // console.log(alert)
 
     return (
-        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, page, setPage, pageCount, setPageCount }}>
+        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, page, setPage, pageCount, setPageCount,progress, setProgress }}>
             {children}
         </GlobalContext.Provider>
     )

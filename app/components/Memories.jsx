@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import { useGlobalContext } from '../Context/memories';
 import { FaHeart, FaMeh } from 'react-icons/fa';
 import MemoryCard from './MemoryCard';
+import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingBar from 'react-top-loading-bar'
 
 
 const Memories = () => {
 
-    const { URL, memories, setMood, mood, page, setPage, pageCount, setPageCount } = useGlobalContext();
+    const { URL, memories, setMood, mood, page, setPage, pageCount, setPageCount, progress, setProgress } = useGlobalContext();
 
     // console.log(typeof (memories) + " type of memories")
     // console.log(memories)
@@ -33,8 +35,23 @@ const Memories = () => {
         })
     }
 
+    const handleProgress = (value) => {
+        setProgress(value);
+    }
+
     return (
         <>
+            <div className="sticky top-0 z-50">
+
+                <LoadingBar
+                    color='red'
+                    progress={progress}
+                    height={3}
+                    waitingTime={400}
+                    onLoaderFinished={() => { setProgress(0) }}
+                />
+            </div>
+            
             <div className=" text-white flex flex-row justify-between text-2xl">
                 choose one
                 <div className="">
@@ -52,12 +69,13 @@ const Memories = () => {
                 </div>
             </div>
             <div className="grid gap-10 grid-cols-fluid">
+
                 {memories.map((data) => {
-                    // console.log(data)
-                    // console.log(data.image)
+
                     return (
                         <MemoryCard data={data} />
                     )
+
                 })}
             </div>
             <button className='text-sm text-white px-7 hover:bg-blue-700 py-2 border-red bg-blue-800 border-1 rounded-xl font-bold uppercase border-black' style={{ cursor: page == 1 ? "text" : "pointer" }} disabled={page === 1} onClick={handlePrevious}>Previous</button>

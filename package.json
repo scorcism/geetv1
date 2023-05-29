@@ -24,6 +24,8 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.8.0",
+    "react-infinite-scroll-component": "^6.1.0",
+    "react-top-loading-bar": "^2.3.1",
     "tinymce": "^6.4.2",
     "tls": "^0.0.1"
   },
