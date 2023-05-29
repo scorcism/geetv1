@@ -106,8 +106,8 @@ const Memory = ({ params: { memory } }) => {
     return (
 
         <>
-            <div className="mx-4 container flex flex-row grow border-green-100">
-                <div className="left__container border-4 border-red-900">
+            <div className="mx-4 container flex flex-row grow border-green-100 max-h-screen">
+                <div className="left__container border-4 border-red-900 flex items-center justify-center">
                     <img class="w-full max-w-full min-w-full"
                         src={mem.image} />
                 </div>
@@ -119,7 +119,7 @@ const Memory = ({ params: { memory } }) => {
 
                     </div>
 
-                    <div className="py-5 desc">
+                    <div className="py-5 desc overflow-y-auto h-full">
                         <p className="text-lg italic tracking-wider ">
                             {mem.desc}
                         </p>
