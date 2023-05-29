@@ -13,6 +13,9 @@ export const GlobalContextProvider = ({ children }) => {
     const [memories, setMemories] = useState([]);
     const [mood, setMood] = useState();
 
+    const [page, setPage] = useState(1);
+    const [pageCount, setPageCount] = useState(0);
+
     const getMemories = async () => {
 
         const requestOptions = {
@@ -21,10 +24,11 @@ export const GlobalContextProvider = ({ children }) => {
 
         // await new Promise((resolve)=>setTimeout(resolve,1000));
 
-        await fetch(`${URL}/getmemories`, requestOptions)
+        await fetch(`${URL}/getmemories?${page}`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
-                setMemories(data);
+                setMemories(data.memories);
+                setPageCount(data.pagination.pageCount);
             })
     }
 
@@ -45,19 +49,19 @@ export const GlobalContextProvider = ({ children }) => {
             setAlert(null);
         }, 2000)
     }
-    
+
     // let memories_shuffled = shuffle(Object.values(memories));
 
     // memories_shuffled = memories;
 
     useEffect(() => {
         getMemories()
-    }, [])
+    }, [page])
 
     // console.log(alert)
 
     return (
-        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood }}>
+        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, page, setPage, pageCount, setPageCount }}>
             {children}
         </GlobalContext.Provider>
     )
