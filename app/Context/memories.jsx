@@ -27,7 +27,19 @@ export const GlobalContextProvider = ({ children }) => {
         await fetch(`${URL}/getmemories?page=${page}`, requestOptions)
             .then((res) => res.json())
             .then((data) => {
-                setMemories(data.memories);
+                // let D = data.mempries;
+                // if(memories.length != 0){
+                //     setMemories(memories.push(D))
+                // }else{
+                //     setMemories(D);
+                //     // setMemories(data.memories);
+                // }
+
+                const newMemories = data.memories;
+                const updatedMemories = [...memories, ...newMemories];
+
+                setMemories(updatedMemories)
+                // setMemories(data.memories)
                 setPageCount(data.pagination.pageCount);
                 setProgress(100);
             })
