@@ -20,11 +20,9 @@ const Alert = ({ message, status }) => {
         <> 
         {
         (message ) &&
-            <div style={{
-              border:"1px solid black"  
-            }} className={`fixed right-10 z-50 lg:w-[300px] rounded-md border-black py-4 px-8  sm:w-40 ${color}`}>  
-                <div className="break-normal  bold">
-                    <h3 className="text-20"> <span>{status_message} </span>{message}</h3> 
+            <div className={`fixed block transition ease-in-out delay-150 right-10 z-50 lg:w-[300px] border-b-5 border-black min-h-[50px] sm:w-40 ${color}`}>  
+                <div className="break-normal bold flex justify-start px-5 py-3 items-start flex-row">
+                    <h3 className="text-2xl"> <span>{status_message} </span>{message}</h3> 
                 </div>
             </div>
         }

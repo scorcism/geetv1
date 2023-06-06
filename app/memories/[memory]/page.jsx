@@ -7,10 +7,11 @@ import { useGlobalContext } from '../../Context/memories';
 
 const Memory = ({ params: { memory } }) => {
     let id = memory;
+    const URL = `http://localhost:5000/api`;
     // const window = (new JSDOM('')).window
     // const DOMPurify = createDOMPurify(window)
-    let { URL, setShowAlert } = useGlobalContext();
-
+    const { setShowAlert } = useGlobalContext();
+    
     const [mem, setMemory] = useState([]);
 
     const [likes, setLikes] = useState();
@@ -114,8 +115,8 @@ const Memory = ({ params: { memory } }) => {
                 <div className="right__container border-2 border-white px-3 text-white flex flex-col ">
 
                     <div className="text-2xl title mt-3">
-                    
-                    <h2 className="">• {mem.name}</h2>
+
+                        <h2 className="">• {mem.name}</h2>
 
                     </div>
 

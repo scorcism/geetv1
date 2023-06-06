@@ -74,7 +74,7 @@ export const GlobalContextProvider = ({ children }) => {
     // console.log(alert)
 
     return (
-        <GlobalContext.Provider value={{ URL, memories, alert, setShowAlert, setMood, mood, page, setPage, pageCount, setPageCount,progress, setProgress }}>
+        <GlobalContext.Provider value={{ memories, alert, setShowAlert, setMood, mood, page, setPage, pageCount, setPageCount,progress, setProgress }}>
             {children}
         </GlobalContext.Provider>
     )

@@ -15,8 +15,8 @@ const MemoryCard = ({ data }) => {
     const [liked, setLiked] = useState(false);
     const [disliked, setDisLiked] = useState(false);
     const [views, setViews] = useState(data.views);
-
-    let { URL, setShowAlert } = useGlobalContext();
+    const URL = `http://localhost:5000/api`;
+    let {  setShowAlert } = useGlobalContext();
 
 
 

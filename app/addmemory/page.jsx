@@ -5,9 +5,9 @@ import { useGlobalContext } from "../Context/memories";
 import { Editor } from '@tinymce/tinymce-react';
 
 function Imageupload() {
+    const URL = `http://localhost:5000/api`;
 
-
-    const { URL, setShowAlert } = useGlobalContext();
+    const { setShowAlert } = useGlobalContext();
     const editorRef = useRef(null);
 
 

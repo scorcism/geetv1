@@ -11,7 +11,7 @@ import Loader from './Loader';
 
 const Memories = () => {
 
-    const { URL, memories, setMood, mood, page, setPage, pageCount, setPageCount, progress, setProgress } = useGlobalContext();
+    const { memories, setMood, mood, page, setPage, pageCount, setPageCount, progress, setProgress } = useGlobalContext();
 
     // console.log(typeof (memories) + " type of memories")
     // console.log(memories)
@@ -57,7 +57,7 @@ const Memories = () => {
                     color='red'
                     progress={progress}
                     height={3}
-                    waitingTime={400}
+                    waitingTime={1000}
                     onLoaderFinished={() => { setProgress(0) }}
                 />
             </div>
