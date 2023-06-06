@@ -121,7 +121,7 @@ const Memory = ({ params: { memory } }) => {
                     </div>
 
                     <div className="py-5 desc overflow-y-auto h-full">
-                        <p className="text-lg italic tracking-wider ">
+                        <p className="text-lg italic tracking-wider  single-desc">
                             {mem.desc}
                         </p>
                         {/* letter-spacing: 0.05em;
@@ -184,7 +184,7 @@ const Memory = ({ params: { memory } }) => {
                                     {/* <span class="text-white text-sm font-bold">{likes} </span>
                                     <span class="text-white text-sm font-bold">{dislikes} </span> */}
                                 </div>
-                                <span class="block ml-2 text-xs text-gray-600">{mem.createdAt}</span>
+                                <span class="block ml-2 text-xs text-gray-600"><span className="text-gray-300"> Published:</span> {mem.createdAt}</span>
                             </div>
                         </div>
                     </div>

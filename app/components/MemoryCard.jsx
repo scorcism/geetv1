@@ -16,7 +16,7 @@ const MemoryCard = ({ data }) => {
     const [disliked, setDisLiked] = useState(false);
     const [views, setViews] = useState(data.views);
     const URL = `http://localhost:5000/api`;
-    let {  setShowAlert } = useGlobalContext();
+    let { setShowAlert } = useGlobalContext();
 
 
 
@@ -77,7 +77,7 @@ const MemoryCard = ({ data }) => {
 
 
     return (
-        <div className="rounded-md p-4 card bg-gray-500 relative" key={data._id}
+        <div className="flex flex-col justify-between rounded-md p-4 card bg-gray-500 relative" key={data._id}
             style={{ minHeight: "min-content" }}
         >
             <div className="card-image flex flex-row justify-center items-center">
@@ -85,7 +85,7 @@ const MemoryCard = ({ data }) => {
                 <Link href={`/memories/${data._id}`} onClick={() => submitStatRequest(data._id, "view", views)}>
 
                     <img className='text-transparent card_img'
-                        style={{  objectFit: "scale-down" }}
+                        style={{ objectFit: "scale-down" }}
                         src={data.image}
                         alt={data.name}
                         width="auto"
@@ -93,48 +93,46 @@ const MemoryCard = ({ data }) => {
                     />
                 </Link>
             </div>
-            <div className=""  >
-                <div className="meta mt-2 flex flex-col">
-                    <div className="name flex flex-row justify-center items-center">
-                        <p className='capitalize'><span></span>{data.name}</p>
-                    </div>
 
-                    <div className="my-2 metadata flex flex-row justify-between items-center">
-                        <p className='text-white capitalize'><span></span>{data.mood}</p>
-                        <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
-                    </div>
-                    <div className="text-ellipsis desc flex flex-row justify-start items-center desc_wrap">
-                        {desc} ....
-                    </div>
-                    {/* <div className="text-ellipsis desc flex flex-row justify-start items-center">
+            <div>
+
+            <div className="name flex flex-row justify-center items-center">
+                <p className='capitalize font-bold'><span></span>{data.name}</p>
+            </div>
+
+                <div className=" metadata flex flex-row justify-between items-center">
+                    <p className='text-white capitalize'><span></span>{data.mood}</p>
+                    <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
+                </div>
+
+                <div className="text-ellipsis desc flex flex-row justify-start items-center desc_wrap">
+                    {desc} ....
+                </div>
+            </div>
+
+            {/* <div className="text-ellipsis desc flex flex-row justify-start items-center">
                         {desc} ....
                     </div> */}
-                    <div className="stats flex flex-row justify-between items-center text-xl w-full">
-                        <div className="likes flex flex-row items-center justify-between">
-                            {
-                                
-                                    <>
-                                        <FaRegHeart className="cursor-none" title='likes' /><span className='text-sm'>{likes}</span>
-                                    </>
-                            }
-                        </div>
-                        <div className="dislikes flex flex-row items-center justify-between">
 
-                            {
-                                
-                                    <>
-                                        <FaMeh className='cursor-none' title='dislikes'  /><span className='text-sm'>{dislikes}</span>
-                                    </>
-                            }
+            <div className="stats flex flex-row justify-between items-center text-xl w-full">
+                <div className="likes flex flex-row items-center justify-between">
+                    {
 
+                        <>
+                            <FaRegHeart className="cursor-none" title='likes' /><span className='text-sm'>{likes}</span>
+                        </>
+                    }
+                </div>
+                <div className="dislikes flex flex-row items-center justify-between">
+                    {
+                        <>
+                            <FaMeh className='cursor-none' title='dislikes' /><span className='text-sm'>{dislikes}</span>
+                        </>
+                    }
 
-                        </div>
-                        <div className="view flex flex-row items-center justify-between">
-                            <FaEye /> <span>{data.views}</span>
-                        </div>
-
-
-                    </div>
+                </div>
+                <div className="view flex flex-row items-center justify-between">
+                    <FaEye /> <span>{data.views}</span>
                 </div>
             </div>
         </div>
