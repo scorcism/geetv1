@@ -37,6 +37,8 @@ const Memory = ({ params: { memory } }) => {
                     setDisLikes(data[0].dislikes);
                     setViews(data[0].views);
                     setID(data[0]._id);
+                    console.log(data[0])
+                    document.title=`${data[0].name} | ${data[0].mood} |  GEET`
                 }
             })
     }
