@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react";
-import { FaMeh, FaEye, FaRegHeart } from 'react-icons/fa';
+import { FaMeh, FaEye, FaRegHeart,FaShareAlt } from 'react-icons/fa';
 import { useGlobalContext } from '../../Context/memories';
 
 
@@ -37,7 +37,7 @@ const Memory = ({ params: { memory } }) => {
                     setDisLikes(data[0].dislikes);
                     setViews(data[0].views);
                     setID(data[0]._id);
-                    console.log(data[0])
+                    // console.log(data[0])
                     document.title=`${data[0].name} | ${data[0].mood} |  GEET`
                 }
             })
@@ -97,6 +97,7 @@ const Memory = ({ params: { memory } }) => {
 
 
     useEffect(() => {
+        document.title="GEET"
         getMemory()
     }, [])
 
@@ -104,6 +105,16 @@ const Memory = ({ params: { memory } }) => {
         console.log(mid);
         console.log(likes + " likes")
         console.log(dislikes + " dislikes")
+    }
+
+    const copyCurrentUrl =() =>{
+        navigator.clipboard.writeText(`${window.location.href}`)
+        // console.log()
+        setShowAlert({
+            message: "Copies Url",
+            status: 1
+        })
+        
     }
 
     return (
@@ -177,6 +188,10 @@ const Memory = ({ params: { memory } }) => {
                                         </div>
                                         <div className="view flex flex-row items-center justify-between">
                                             <FaEye /> <span>{mem.views}</span>
+                                        </div>
+                                        <div className="cursor-pointer">
+
+                                            <FaShareAlt onClick={copyCurrentUrl}/>
                                         </div>
 
 
