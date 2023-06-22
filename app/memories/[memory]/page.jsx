@@ -101,11 +101,11 @@ const Memory = ({ params: { memory } }) => {
         getMemory()
     }, [])
 
-    if (mem) {
-        console.log(mid);
-        console.log(likes + " likes")
-        console.log(dislikes + " dislikes")
-    }
+    // if (mem) {
+    //     // console.log(mid);
+    //     // console.log(likes + " likes")
+    //     // console.log(dislikes + " dislikes")
+    // }
 
     const copyCurrentUrl =() =>{
         navigator.clipboard.writeText(`${window.location.href}`)

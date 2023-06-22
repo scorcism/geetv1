@@ -1,6 +1,6 @@
 "use client"
 
-import Link from 'next/link';
+// import Link from 'next/link';
 import { useEffect, useState } from "react";
 import { useGlobalContext } from '../Context/memories';
 import { FaHeart, FaMeh } from 'react-icons/fa';
@@ -9,13 +9,14 @@ import LoadingBar from 'react-top-loading-bar'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Loader from './Loader';
 
+
 const Memories = () => {
 
     const { memories, setMood, mood, page, setPage, pageCount, setPageCount, progress, setProgress } = useGlobalContext();
 
     // console.log(typeof (memories) + " type of memories")
     // console.log(memories)
-    console.log(pageCount + " page count");
+    // console.log(pageCount + " page count");
     function handlePrevious() {
         setPage((p) => {
             if (p === 1) {
@@ -82,7 +83,7 @@ const Memories = () => {
                 dataLength={memories.length} //This is important field to render the next data
                 next={fetchData}
                 hasMore={page !== pageCount}
-                loader={<Loader/>}
+                loader={<Loader />}
                 endMessage={
                     <p style={{ textAlign: 'center' }}>
                         {/* <b>Yay! You have seen it all</b> */}
@@ -94,6 +95,7 @@ const Memories = () => {
 
                         return (
                             <MemoryCard data={data} />
+                            
                         )
 
                     })}

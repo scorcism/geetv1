@@ -1,15 +1,23 @@
 "use client"
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { FaMeh, FaEye, FaRegHeart } from 'react-icons/fa';
+import { useEffect, } from 'react';
+import { FaMeh, FaEye, FaRegHeart, FaRegEyeSlash } from 'react-icons/fa';
 import { useGlobalContext } from '../Context/memories';
-
+import { Fragment, useState } from "react";
+import {
+    Button,
+    Dialog,
+    DialogHeader,
+    DialogBody,
+    DialogFooter,
+} from "@material-tailwind/react";
+import DeleteMemory from './DeleteMemory';
 
 const MemoryCard = ({ data }) => {
     // console.log(data)
     let desc = data.desc
-
+    // console.log(data)
     const [likes, setLikes] = useState(data.likes);
     const [dislikes, setDisLikes] = useState(data.dislikes);
     const [liked, setLiked] = useState(false);
@@ -75,6 +83,14 @@ const MemoryCard = ({ data }) => {
 
     }, [])
 
+    const deleteNote = (id) => {
+        // console.log("on clic delete ")
+        // console.log(id + " <= id")
+    }
+
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => setOpen(!open);
 
     return (
         <div className="flex flex-col justify-between rounded-md p-4 card bg-gray-500 relative" key={data._id}
@@ -96,13 +112,14 @@ const MemoryCard = ({ data }) => {
 
             <div>
 
-            <div className="name flex flex-row justify-center items-center">
-                <p className='capitalize font-bold'><span></span>{data.name}</p>
-            </div>
+                <div className="name flex flex-row justify-center items-center">
+                    <p className='capitalize font-bold'><span></span>{data.name}</p>
+                </div>
 
                 <div className=" metadata flex flex-row justify-between items-center">
                     <p className='text-white capitalize'><span></span>{data.mood}</p>
                     <p className='text-white'><span className='text-red-600'>@</span>{data.handle}</p>
+            
                 </div>
 
                 <div className="text-ellipsis desc flex flex-row justify-start items-center desc_wrap">
@@ -131,11 +148,38 @@ const MemoryCard = ({ data }) => {
                     }
 
                 </div>
+                <div className="cursor-pointer" title="Delete">
+                    <DeleteMemory id={data._id} name={data.name} password={data.password}/>
+                </div>
                 <div className="view flex flex-row items-center justify-between">
                     <FaEye /> <span>{data.views}</span>
                 </div>
             </div>
         </div>
+        // <Card className=""
+        //     sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+        // >
+        //     <CardMedia
+        //         component="div"
+        //         sx={{
+        //             // 16:9
+        //             pt: '56.25%',
+        //         }}
+        //         image={data.image}
+        //     />
+        //     <CardContent sx={{ flexGrow: 1 }}>
+        //         <Typography gutterBottom variant="h5" component="h2">
+        //         {data.name}
+        //         </Typography>
+        //         <Typography className="text-ellipsis desc desc_wrap">
+        //         {desc}...
+        //         </Typography>
+        //     </CardContent>
+        //     <CardActions>
+        //         <Button size="small">View</Button>
+        //         <Button size="small">Edit</Button>
+        //     </CardActions>
+        // </Card>
     )
 }
 
