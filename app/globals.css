@@ -13,35 +13,6 @@
   animation: spin 2s linear infinite;
 }
 
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.left__container {
-  width: 50%;
-}
-
-.right__container {
-  width: 50%;
-}
-
 .desc_wrap {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -79,13 +50,4 @@ body::-webkit-scrollbar-thumb {
 .desc::-webkit-scrollbar-thumb {
   background-color: darkgrey;
   outline: 1px solid slategrey;
-}
-
-.single-desc::first-letter {
-  /* font-size: 3rem ; */
-  initial-letter: 2 2;
-  color: red;
-  padding-right: 0.4rem;
-  text-transform: capitalize;
-
 }

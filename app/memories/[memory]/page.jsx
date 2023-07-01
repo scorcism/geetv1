@@ -8,8 +8,6 @@ import { useGlobalContext } from '../../Context/memories';
 const Memory = ({ params: { memory } }) => {
     let id = memory;
     const URL = `http://localhost:5000/api`;
-    // const window = (new JSDOM('')).window
-    // const DOMPurify = createDOMPurify(window)
     const { setShowAlert } = useGlobalContext();
     
     const [mem, setMemory] = useState([]);

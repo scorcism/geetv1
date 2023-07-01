@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useGlobalContext } from "../Context/memories";
-import { Editor } from '@tinymce/tinymce-react';
+
 
 function Imageupload() {
     const URL = `http://localhost:5000/api`;
